@@ -6,13 +6,52 @@ package mr
 // remember to capitalize all names.
 //
 
-import "os"
+import (
+	"os"
+)
 import "strconv"
 
 //
 // example to show how to declare the arguments
 // and reply for an RPC.
 //
+
+type JobType uint8
+
+const (
+	Map JobType = iota
+	Reduce
+)
+
+type Args struct {
+	
+}
+
+type Reply struct {
+	JobType JobType
+	JobID int64
+	MapInput string
+	ReduceInput1 []string
+	ReduceInput2 [][]string
+}
+
+type SubmitMapArgs struct {
+	JobType JobType
+	JobID int64
+	Result []KeyValue
+}
+
+type SubmitMapReply struct {
+}
+
+type SubmitReduceArgs struct {
+	JobType JobType
+	JobID   int64
+	Result  []string
+}
+
+type SubmitReduceReply struct {
+}
 
 type ExampleArgs struct {
 	X int
